@@ -7,6 +7,9 @@
   // Get a reference to the music play button
   const musicButton = document.querySelector('.music-button');
 
+  var button = document.getElementById('enter');
+
+  console.log("hello");
  // Create an array of audio files
  const audioFiles = [
    'audio/A5.mp3',
@@ -22,6 +25,30 @@
    'audio/G5.mp3',
    'audio/Gb5.mp3',
  ];
+
+ const noteMap = {
+  'audio/A5.mp3' : 1,
+  'audio/Ab5.mp3': 2,
+  'audio/B5.mp3' : 3,
+  'audio/Bb5.mp3' : 4,
+  'audio/C5.mp3' : 5,
+  'audio/D5.mp3' : 6,
+  'audio/Db5.mp3' : 7,
+  'audio/E5.mp3' : 8 ,
+  'audio/Eb5.mp3' : 9,
+  'audio/F5.mp3' : 10,
+  'audio/G5.mp3' : 11,
+  'audio/Gb5.mp3' : 12,
+ }
+
+ var filesNum = [];
+
+ for (let i = 0; i < audioFiles.length; i++) {
+  filesNum[i] = [audioFiles[i],i];
+  
+ }
+
+console.log(filesNum);
 
    // Define the notes to play
    const notes = [
@@ -43,6 +70,7 @@
   // Add a click event listener to each key
   keys.forEach((key, index) => {
     key.addEventListener('click', () => {
+      console.log(audioFiles[index]);
       // Play the corresponding audio file
       new Audio(audioFiles[index]).play();
 
@@ -66,3 +94,69 @@
       }
     }, delay);
   });
+
+
+  button.addEventListener('click', () => {
+    console.log(pinValue(notes));
+   // console.log(pinField.value);
+    //pinValue(notes);
+    if(pinField.value == '12345'){
+      console.log("okay, true pin");
+      console.log(pinValue(notes));
+      //alert("true pin");
+    }
+  });
+
+  /*
+  if(pinField.value == '12345'){
+    console.log("okay");
+  }
+  */
+
+
+  function pinValue(music) {
+    let count = 0;
+    music.forEach(note => {
+      //console.log(note)
+      count += noteMap[note];
+    });
+
+    return count;
+  }
+
+  /*
+  switch (note) {
+    case 'audio/A5.mp3':
+      return 1;
+      break;
+    case 'audio/Ab5.mp3':
+      return 2;
+      break;
+    case 'audio/B5.mp3':
+      return 3;
+      break;
+    case 'audio/Bb5.mp3':
+      return 4;
+      break;
+    case 'audio/C5.mp3':
+      return 5;
+      break;
+    case 'audio/D5.mp3':
+      return 6;
+      break;
+    case 'audio/Db5.mp3':
+      return 7;
+      break;
+    case 'audio/E5.mp3':
+      return 8;
+      break;
+    case 'audio/Eb5.mp3':
+      return 9;
+      break;
+    case 'audio/F5.mp3':
+      return 0;
+      break;      
+    default:
+      break;
+  }
+  */
