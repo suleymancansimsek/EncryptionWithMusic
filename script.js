@@ -14,6 +14,7 @@
 
   var buttonPressed = false;
   var pin = null;
+  var pinArr = [];
   
  // Create an array of audio files
  const audioFiles = [
@@ -46,6 +47,23 @@
   'audio/Gb5.mp3' : 12,
  }
 
+ 
+ var noteMapReverse = {
+  12: 'audio/Gb5.mp3',
+  11: 'audio/G5.mp3',
+  10: 'audio/F5.mp3',
+  9: 'audio/Eb5.mp3',
+  8: 'audio/E5.mp3',
+  7: 'audio/Db5.mp3',
+  6: 'audio/D5.mp3',
+  5: 'audio/C5.mp3',
+  4: 'audio/Bb5.mp3',
+  3: 'audio/B5.mp3',
+  2: 'audio/Ab5.mp3',
+  1: 'audio/A5.mp3'
+}
+
+ 
  /*
  var filesNum = [];
 
@@ -54,7 +72,7 @@
   
  }
 console.log(filesNum);
- */
+ 
 
    // Define the notes to play
    const notes = [
@@ -66,6 +84,7 @@ console.log(filesNum);
     audioFiles[9], // Note 10
     audioFiles[11], // Note 12
   ];
+*/
 
   // Define the tempo (in beats per minute)
   const tempo = 120;
@@ -86,6 +105,7 @@ console.log(filesNum);
 
         if(buttonPressed){
           pin += key.textContent;
+          pinArr.push(key.textContent);
         }
       
       }
@@ -95,17 +115,36 @@ console.log(filesNum);
   // Add a click event listener to the music play button
   musicButton.addEventListener('click', () => {
     // Play the notes
+    let notes = createMusic(pinArr);
+    console.log(notes);
     let i = 0;
     const playNote = setInterval(() => {
       if (i >= notes.length) {
         clearInterval(playNote);
       } else {
         new Audio(notes[i]).play();
+        console.log(notes[i]);
         i++;
+      
       }
     }, delay);
+
+    
   });
 
+
+
+  
+  function createMusic(pinArrayNotes) {
+    var musicNotes = []
+
+    for (let i = 0; i < pinArrayNotes.length; i++) {
+      musicNotes.push(audioFiles[pinArrayNotes[i] - 1]);
+      
+    }
+
+    return musicNotes;
+  }
 
 
   createPin.addEventListener('click', setPin );
