@@ -41,6 +41,29 @@
     text-align: center;
     cursor: pointer;
   }
+
+  #create-button{
+    display: block;
+    width: 100px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .messageBox{
+    display: block;
+    width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  #message{
+    text-align: center;
+  }
   .music-button:hover {
     background-color: #eee;
   }

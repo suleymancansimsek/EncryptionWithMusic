@@ -7,9 +7,14 @@
   // Get a reference to the music play button
   const musicButton = document.querySelector('.music-button');
 
-  var button = document.getElementById('enter');
+  var enter = document.getElementById('enter');
+  var createPin = document.getElementById('create-button');
 
-  console.log("hello");
+  var message = document.getElementById('message');
+
+  var buttonPressed = false;
+  var pin = null;
+  
  // Create an array of audio files
  const audioFiles = [
    'audio/A5.mp3',
@@ -41,14 +46,15 @@
   'audio/Gb5.mp3' : 12,
  }
 
+ /*
  var filesNum = [];
 
  for (let i = 0; i < audioFiles.length; i++) {
   filesNum[i] = [audioFiles[i],i];
   
  }
-
 console.log(filesNum);
+ */
 
    // Define the notes to play
    const notes = [
@@ -77,6 +83,11 @@ console.log(filesNum);
       // If the key is a number, add it to the PIN input field
       if (!isNaN(key.textContent)) {
         pinField.value += key.textContent;
+
+        if(buttonPressed){
+          pin += key.textContent;
+        }
+      
       }
     });
   });
@@ -96,24 +107,63 @@ console.log(filesNum);
   });
 
 
-  button.addEventListener('click', () => {
-    console.log(pinValue(notes));
-   // console.log(pinField.value);
-    //pinValue(notes);
-    if(pinField.value == '12345'){
-      console.log("okay, true pin");
-      console.log(pinValue(notes));
-      //alert("true pin");
+
+  createPin.addEventListener('click', setPin );
+
+  var pin;
+  function setPin() {
+
+    buttonPressed = !buttonPressed; 
+
+    pin = pinField.value;
+
+    if(buttonPressed){
+
+      createPin.innerHTML = "Submit";
+      message.innerHTML = "create your pin";
+    
+    }else{
+      open = true;
+      message.innerHTML = "create your pin!";
+      
     }
+
+  }
+
+
+
+  enter.addEventListener('click', () => {
+
+    if(pin == pinField.value && pin != null){
+      console.log("pin true ");
+    }else{
+      console.log("pin false");
+    }
+    
   });
+
 
   /*
   if(pinField.value == '12345'){
     console.log("okay");
   }
+ 
+  enter.addEventListener('click', event => {
+    // Prevent the form from submitting
+    event.preventDefault();
+    var password = null;
+
+    if(open){
+      password = pinField.value;
+      open = false;
+    }
+    
+    // Log the password to the console
+    console.log(password);
+  });
+
   */
-
-
+ 
   function pinValue(music) {
     let count = 0;
     music.forEach(note => {
