@@ -53,6 +53,14 @@
     cursor: pointer;
   }
 
+  .buttons{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .messageBox{
     display: block;
     width: 400px;
@@ -63,6 +71,17 @@
   }
   #message{
     text-align: center;
+  }
+
+  #show-pin{
+    display: block;
+    width: 100px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
   }
   .music-button:hover {
     background-color: #eee;

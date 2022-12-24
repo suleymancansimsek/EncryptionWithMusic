@@ -9,8 +9,9 @@
 
   var enter = document.getElementById('enter');
   var createPin = document.getElementById('create-button');
-
+  var showPin = document.getElementById('show-pin');
   var message = document.getElementById('message');
+  var myPin = document.getElementById('myPin');
 
   var buttonPressed = false;
   var pin = null;
@@ -132,9 +133,12 @@ console.log(filesNum);
     
   });
 
-
-
   
+  showPin.addEventListener('click', () => {
+
+    myPin.innerHTML = "Your pin : " + pin ;
+  });
+
   function createMusic(pinArrayNotes) {
     var musicNotes = []
 
@@ -160,9 +164,10 @@ console.log(filesNum);
 
       createPin.innerHTML = "Submit";
       message.innerHTML = "create your pin";
+      
     
     }else{
-      open = true;
+      
       message.innerHTML = "create your pin!";
       
     }
@@ -175,8 +180,10 @@ console.log(filesNum);
 
     if(pin == pinField.value && pin != null){
       console.log("pin true ");
+      alert("pin true ");
     }else{
       console.log("pin false");
+      alert("pin false ");
     }
     
   });
